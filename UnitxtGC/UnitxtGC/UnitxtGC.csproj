@@ -38,8 +38,9 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\..\..\Libraries\Newtonsoft.Json\bin\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="PRS">
-      <HintPath>..\..\..\Libraries\PRS\PRS\bin\Release\PRS.dll</HintPath>
+    <Reference Include="PRS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\PRS\PRS\bin\Release\PRS.dll</HintPath>
     </Reference>
     <Reference Include="System" />
   </ItemGroup>
