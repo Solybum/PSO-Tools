@@ -1,4 +1,10 @@
 # PSO-Tools
-Collection of tools for Phantasy Star Online games.
+Collection of tools and libraries for PSO related programs.
 
-This repository will contain tools not closely related to [Aselia](https://github.com/Solybum/Aselia) but still related to PSO
+## Tools
+#### UnitxtGC
+Gamecube "unitxt" file editor
+
+## Libraries 
+#### PRS
+PRS compression library used in Sega games.  
