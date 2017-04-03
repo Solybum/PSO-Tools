@@ -71,35 +71,100 @@ namespace UnitxtGC
 
         private void JsonToBin(string filename)
         {
-            // This is code from the Unitxt BB
-            //byte[] data = File.ReadAllBytes(filename);
-            //UnitxtGCFile unitxt = JsonDeserialize<UnitxtGCFile>(data, 0, data.Length);
+            byte[] data = File.ReadAllBytes(filename);
+            UnitxtGCFile unitxt = JsonDeserialize<UnitxtGCFile>(data, 0, data.Length);
 
-            //ByteArray ba = new ByteArray(1024 * 1024);
-            //ba.Write(unitxt.groups.Count);
+            int pr3_pointers = 0;
+            // Add all the strings as well as the group pointer
+            for (int i1 = 0; i1 < 44; i1++)
+            {
+                pr3_pointers += 1;
+                pr3_pointers += unitxt.StringGroups[i1].entries.Count;
+            }
 
-            //int pointerCount = 0;
-            //for (int i1 = 0; i1 < unitxt.groups.Count; i1++)
-            //{
-            //    ba.Write(unitxt.groups[i1].entries.Count);
-            //    pointerCount += unitxt.groups[i1].entries.Count;
-            //}
-            //int pointerOffset = ba.Position;
-            //ba.Position += (pointerCount * 4);
-            //for (int i1 = 0; i1 < unitxt.groups.Count; i1++)
-            //{
-            //    for (int i2 = 0; i2 < unitxt.groups[i1].entries.Count; i2++)
-            //    {
-            //        string text = unitxt.groups[i1].entries[i2];
-            //        ba.Write(ba.Position, pointerOffset);
-            //        ba.WriteStringW(text, 0, text.Length, true);
-            //        pointerOffset += 4;
-            //    }
-            //}
-            //ba.Pad(4);
-            //ba.Resize(ba.Position);
-            //data = PRS.Compress(ba.Buffer);
-            //File.WriteAllBytes(Path.ChangeExtension(filename, ".prs"), data);
+            // Whatever, this should be enough, every time
+            ByteArray dataPr2 = new ByteArray(1024 * 1024);
+            ByteArray dataPr3 = new ByteArray((pr3_pointers + 5) * 2 + 32);
+
+            for (int i1 = 0; i1 < 44; i1++)
+            {
+                for (int i2 = 0; i2 < unitxt.StringGroups[i1].entries.Count; i2++)
+                {
+                    // Save the string offset
+                    unitxt.StringGroups[i1].stringOffsets.Add(dataPr2.Position);
+
+                    dataPr2.WriteStringA(unitxt.StringGroups[i1].entries[i2], 0, unitxt.StringGroups[i1].entries[i2].Length, true);
+                    dataPr2.Pad(4);
+                }
+            }
+
+            // Write the tables
+            // We'll need the first one 
+            List<int> tablePointers = new List<int>();
+            for (int i1 = 0; i1 < unitxt.SomeTables.Count; i1++)
+            {
+                // Save the table offset
+                tablePointers.Add(dataPr2.Position);
+                for (int i2 = 0; i2 < unitxt.SomeTables[i1].Count; i2++)
+                {
+                    dataPr2.Write(SwapEndian(unitxt.SomeTables[i1][i2]));
+                }
+            }
+
+            // We'll need this offset, it's the beginning of the short table pointer in pr3
+            int tablePointer = dataPr2.Position;
+            for (int i1 = 0; i1 < unitxt.SomeTables.Count; i1++)
+            {
+                // Save the table offset
+                dataPr2.Write(SwapEndian(tablePointers[i1]));
+            }
+            // Table count offset, needed at the end
+            int tableCountOffset = dataPr2.Position;
+            dataPr2.Write(2);
+            dataPr2.Write(SwapEndian(tablePointer));
+
+            for (int i1 = 0; i1 < 44; i1++)
+            {
+                unitxt.StringGroups[i1].groupOffset = dataPr2.Position;
+                for (int i2 = 0; i2 < unitxt.StringGroups[i1].stringOffsets.Count; i2++)
+                {
+                    dataPr2.Write(SwapEndian(unitxt.StringGroups[i1].stringOffsets[i2]));
+                }
+            }
+            int stringGroupOffset = dataPr2.Position;
+            for (int i1 = 0; i1 < 44; i1++)
+            {
+                dataPr2.Write(SwapEndian(unitxt.StringGroups[i1].groupOffset));
+            }
+            int tableCountOffsetOffset = dataPr2.Position;
+            dataPr2.Write(SwapEndian(tableCountOffset));
+            dataPr2.Write(SwapEndian(stringGroupOffset));
+
+            dataPr2.Resize(dataPr2.Position);
+
+            // Write Pr3 data
+            dataPr3.Write(0x20);
+            dataPr3.Write(SwapEndian(pr3_pointers + 5));
+            dataPr3.Write(SwapEndian(1));
+            dataPr3.Write(0);
+            dataPr3.Write(SwapEndian(tableCountOffsetOffset));
+            dataPr3.Write(0);
+            dataPr3.Write(0);
+            dataPr3.Write(0);
+
+            // Just fill this stuff
+            dataPr3.Write(SwapEndian((short)(tablePointer / 4)));
+            dataPr3.Write(SwapEndian((short)1));
+            dataPr3.Write(SwapEndian((short)2));
+            for (int i1 = 0; i1 < pr3_pointers; i1++)
+            {
+                dataPr3.Write(SwapEndian((short)1));
+            }
+            dataPr3.Write(SwapEndian((short)1));
+            dataPr3.Write(SwapEndian((short)1));
+
+            File.WriteAllBytes(Path.ChangeExtension(filename, ".pr2"), dataPr2.Buffer);
+            File.WriteAllBytes(Path.ChangeExtension(filename, ".pr3"), dataPr3.Buffer);
         }
         private void BinToJson(string filename)
         {

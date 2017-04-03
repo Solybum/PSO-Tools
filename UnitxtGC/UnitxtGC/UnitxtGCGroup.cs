@@ -9,8 +9,9 @@ namespace UnitxtGC
         [JsonProperty] public string name;
         [JsonProperty] public int count;
         [JsonProperty] public List<string> entries;
-        // Store the string offset when written back to binary
-        // This is so I can write their pointers later on
+        
+        // Ofsets for when writing back to binary
+        public int groupOffset;
         public List<int> stringOffsets;
         public UnitxtGCGroup()
         {
