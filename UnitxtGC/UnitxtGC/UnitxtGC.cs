@@ -14,11 +14,6 @@ namespace UnitxtGC
             int mode = 0;
             string path = string.Empty;
 
-#if DEBUG
-            // args = new string[] { "-bin2json", @"..\..\..\Files\original_text.pr2" };
-            // args = new string[] { "-json2bin", @"..\..\..\Files\processed_text.json" };
-#endif
-
             if (args.Length == 2)
             {
                 path = args[args.Length - 1];
@@ -56,8 +51,20 @@ namespace UnitxtGC
                     Console.WriteLine(ex);
                 }
             }
+            
+#if DEBUG
+            try
+            {
+                ProcessFile(@"..\..\..\Files\original_text.pr2", 2);
+                ProcessFile(@"..\..\..\Files\processed_text.json", 1);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+#endif
         }
-        
+
         private void ProcessFile(string path, int mode)
         {
             if (mode == 1)
@@ -102,13 +109,14 @@ namespace UnitxtGC
             // Write the tables
             // We'll need the first one 
             List<int> tablePointers = new List<int>();
+            dataPr2.Endianess = Endianess.BigEndian;
             for (int i1 = 0; i1 < unitxt.SomeTables.Count; i1++)
             {
                 // Save the table offset
                 tablePointers.Add(dataPr2.Position);
                 for (int i2 = 0; i2 < unitxt.SomeTables[i1].Count; i2++)
                 {
-                    dataPr2.Write(SwapEndian(unitxt.SomeTables[i1][i2]));
+                    dataPr2.Write(unitxt.SomeTables[i1][i2]);
                 }
             }
 
@@ -117,52 +125,55 @@ namespace UnitxtGC
             for (int i1 = 0; i1 < unitxt.SomeTables.Count; i1++)
             {
                 // Save the table offset
-                dataPr2.Write(SwapEndian(tablePointers[i1]));
+                dataPr2.Write(tablePointers[i1]);
             }
             // Table count offset, needed at the end
             int tableCountOffset = dataPr2.Position;
+            dataPr2.Endianess = Endianess.LittleEndian;
             dataPr2.Write(2);
-            dataPr2.Write(SwapEndian(tablePointer));
+            dataPr2.Endianess = Endianess.BigEndian;
+            dataPr2.Write(tablePointer);
 
             for (int i1 = 0; i1 < 44; i1++)
             {
                 unitxt.StringGroups[i1].groupOffset = dataPr2.Position;
                 for (int i2 = 0; i2 < unitxt.StringGroups[i1].stringOffsets.Count; i2++)
                 {
-                    dataPr2.Write(SwapEndian(unitxt.StringGroups[i1].stringOffsets[i2]));
+                    dataPr2.Write(unitxt.StringGroups[i1].stringOffsets[i2]);
                 }
             }
             int stringGroupOffset = dataPr2.Position;
             for (int i1 = 0; i1 < 44; i1++)
             {
-                dataPr2.Write(SwapEndian(unitxt.StringGroups[i1].groupOffset));
+                dataPr2.Write(unitxt.StringGroups[i1].groupOffset);
             }
             int tableCountOffsetOffset = dataPr2.Position;
-            dataPr2.Write(SwapEndian(tableCountOffset));
-            dataPr2.Write(SwapEndian(stringGroupOffset));
+            dataPr2.Write(tableCountOffset);
+            dataPr2.Write(stringGroupOffset);
 
             dataPr2.Resize(dataPr2.Position);
 
             // Write Pr3 data
             dataPr3.Write(0x20);
-            dataPr3.Write(SwapEndian(pr3_pointers + 5));
-            dataPr3.Write(SwapEndian(1));
+            dataPr3.Endianess = Endianess.BigEndian;
+            dataPr3.Write(pr3_pointers + 5);
+            dataPr3.Write(1);
             dataPr3.Write(0);
-            dataPr3.Write(SwapEndian(tableCountOffsetOffset));
+            dataPr3.Write(tableCountOffsetOffset);
             dataPr3.Write(0);
             dataPr3.Write(0);
             dataPr3.Write(0);
 
             // Just fill this stuff
-            dataPr3.Write(SwapEndian((short)(tablePointer / 4)));
-            dataPr3.Write(SwapEndian((short)1));
-            dataPr3.Write(SwapEndian((short)2));
+            dataPr3.Write((short)(tablePointer / 4));
+            dataPr3.Write((short)1);
+            dataPr3.Write((short)2);
             for (int i1 = 0; i1 < pr3_pointers; i1++)
             {
-                dataPr3.Write(SwapEndian((short)1));
+                dataPr3.Write((short)1);
             }
-            dataPr3.Write(SwapEndian((short)1));
-            dataPr3.Write(SwapEndian((short)1));
+            dataPr3.Write((short)1);
+            dataPr3.Write((short)1);
 
             File.WriteAllBytes(Path.ChangeExtension(filename, ".pr2"), dataPr2.Buffer);
             File.WriteAllBytes(Path.ChangeExtension(filename, ".pr3"), dataPr3.Buffer);
@@ -180,7 +191,8 @@ namespace UnitxtGC
             
             // This offset is not BE
             int shortPointerTableOffset = dataPR3.ReadI32();
-            int shortPointerTableCount = SwapEndian(dataPR3.ReadI32());
+            dataPR3.Endianess = Endianess.BigEndian;
+            int shortPointerTableCount = dataPR3.ReadI32();
             // We don't care about the rest
             dataPR3.Position = shortPointerTableOffset;
             
@@ -188,33 +200,36 @@ namespace UnitxtGC
             int chain = 0;
             for (int i1 = 0; i1 < shortPointerTableCount; i1++)
             {
-                chain = SwapEndian(dataPR3.ReadI16()) * 4 + chain;
+                chain = dataPR3.ReadI16() * 4 + chain;
                 shortPointerTable.Add(chain);
             }
 
             // Read starting pointers for the PR2 data
             // Last 2 pointers are the ones we need
             dataPR2.Position = shortPointerTable[shortPointerTable.Count - 2];
-            int unitxtTablesPointer = SwapEndian(dataPR2.ReadI32());
-            int unitxtStringGroupsPointer = SwapEndian(dataPR2.ReadI32());
+            dataPR2.Endianess = Endianess.BigEndian;
+            int unitxtTablesPointer = dataPR2.ReadI32();
+            int unitxtStringGroupsPointer = dataPR2.ReadI32();
 
             // Judging by other REL files this is the count, but the data says 023C0000... 
             // Could be an error in the data? We'll find out
             dataPR2.Position = unitxtTablesPointer;
+            dataPR2.Endianess = Endianess.LittleEndian;
             int unitxtTableCount = dataPR2.ReadI32();
+            dataPR2.Endianess = Endianess.BigEndian;
             // Set the actual count we don't care about that value
             unitxtTableCount = 2;
-            int unitxtTablePointer = SwapEndian(dataPR2.ReadI32());
+            int unitxtTablePointer = dataPR2.ReadI32();
             
             for (int i1 = 0; i1 < unitxtTableCount; i1++)
             {
-                dataPR2.Position = SwapEndian(dataPR2.ReadI32(unitxtTablePointer + i1 * 4));
+                dataPR2.Position = dataPR2.ReadI32(unitxtTablePointer + i1 * 4);
 
                 unitxt.SomeTables.Add(new List<short>());
                 // Each table has 112 entries, apparently
                 for (int i2 = 0; i2 < 112; i2++)
                 {
-                    short value = SwapEndian(dataPR2.ReadI16());
+                    short value = dataPR2.ReadI16();
                     unitxt.SomeTables[i1].Add(value);
                 }
             }
@@ -224,19 +239,19 @@ namespace UnitxtGC
                 unitxt.StringGroups.Add(new UnitxtGCGroup() { name = string.Format("Group {0:D2}", i1) });
 
                 int groupPointer = shortPointerTable[shortPointerTable.Count - 46 + i1];
-                int groupAddress = SwapEndian(dataPR2.ReadI32(groupPointer));
+                int groupAddress = dataPR2.ReadI32(groupPointer);
 
                 int nextGroupPointer = shortPointerTable[shortPointerTable.Count - 46 + i1 + 1];
-                int nextGroupAddress = SwapEndian(dataPR2.ReadI32(nextGroupPointer));
+                int nextGroupAddress = dataPR2.ReadI32(nextGroupPointer);
                 if (i1 >= 43)
                 {
                     nextGroupPointer = shortPointerTable[shortPointerTable.Count - 1];
-                    nextGroupAddress = SwapEndian(dataPR2.ReadI32(nextGroupPointer));
+                    nextGroupAddress = dataPR2.ReadI32(nextGroupPointer);
                 }
 
                 while (groupAddress < nextGroupAddress)
                 {
-                    int stringPointer = SwapEndian(dataPR2.ReadI32(groupAddress));
+                    int stringPointer = dataPR2.ReadI32(groupAddress);
                     try
                     {
                         string text = dataPR2.ReadStringA(-1, stringPointer);
@@ -255,26 +270,7 @@ namespace UnitxtGC
             string jsonText = JsonSerialize(unitxt, true);
             File.WriteAllText(Path.ChangeExtension(filename, ".json"), jsonText);
         }
-
-        public static uint SwapEndian(uint n)
-        {
-            return ((n & 0xff000000) >> 24) | ((n & 0x00ff0000) >> 8) | ((n & 0x0000ff00) << 8) | (n << 24);
-        }
-        public static int SwapEndian(int n)
-        {
-            uint val = (uint)(n);
-            return (int)(((val & 0xff000000) >> 24) | ((val & 0x00ff0000) >> 8) | ((val & 0x0000ff00) << 8) | (val << 24));
-        }
-        public static ushort SwapEndian(ushort n)
-        {
-            return (ushort)(((n & 0xff00) >> 8) | (n << 8));
-        }
-        public static short SwapEndian(short n)
-        {
-            ushort val = (ushort)(n);
-            return (short)(((n & 0xff00) >> 8) | (n << 8));
-        }
-
+        
         public static string JsonSerialize(object data, bool format = false)
         {
             StringBuilder sb = new StringBuilder();
