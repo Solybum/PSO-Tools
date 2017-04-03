@@ -14,7 +14,10 @@ namespace UnitxtGC
             int mode = 0;
             string path = string.Empty;
 
-            args = new string[] { "-bin2json", @"..\..\..\Files\text.pr2" };
+#if DEBUG
+            // args = new string[] { "-bin2json", @"..\..\..\Files\original_text.pr2" };
+            args = new string[] { "-json2bin", @"..\..\..\Files\processed_text.json" };
+#endif
 
             if (args.Length == 2)
             {
