@@ -38,9 +38,6 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\..\..\Libraries\Newtonsoft.Json\bin\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="PRS">
-      <HintPath>..\..\..\Libraries\PRS\PRS\bin\Release\PRS.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
