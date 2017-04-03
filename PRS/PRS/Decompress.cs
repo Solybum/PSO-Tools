@@ -1,4 +1,4 @@
-﻿namespace Libraries.PRS
+﻿namespace PSO.PRS
 {
     class PRSDecompression
     {

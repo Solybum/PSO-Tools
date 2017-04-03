@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Libraries.PRS
+namespace PSO.PRS
 {
     /// <summary>
     /// PRS library

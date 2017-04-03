@@ -7,7 +7,7 @@
     <ProjectGuid>{F5CDFC67-AD4B-4825-BD1C-AA54CF481058}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Libraries.PRS</RootNamespace>
+    <RootNamespace>PSO.PRS</RootNamespace>
     <AssemblyName>PRS</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
