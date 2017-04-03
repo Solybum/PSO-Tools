@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("UnitxtGC")]
-[assembly: AssemblyDescription("Program to convert gamecube unitxt files between their binary form and Json")]
+[assembly: AssemblyDescription("Program to convert GameCube unitxt files between their (decompressed) binary form and Json")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("UnitxtGC")]
