@@ -2,8 +2,8 @@
 Collection of tools and libraries for PSO related programs.
 
 ## Tools
-[UnitxtGC](https://github.com/Solybum/PSO-Tools/tree/master/UnitxtGC)  
-Gamecube "unitxt" file editor
+[PSOCT](https://github.com/Solybum/PSO-Tools/tree/master/PSO%20Concole%20Text)  
+PSO Console "unitxt" editor
 
 ## Libraries 
 [PRS](https://github.com/Solybum/PSO-Tools/tree/master/PRS)  
