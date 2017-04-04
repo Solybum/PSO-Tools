@@ -25,14 +25,14 @@ namespace PSOCT
 #if DEBUG
             try
             {
-                //UnitxtDC.BinToJson(@"..\..\..\Files\DC\text_o.pr2");
+                UnitxtDC.BinToJson(@"..\..\..\Files\DC\text_o.pr2");
                 //UnitxtDC.JsonToBin(@"..\..\..\Files\DC\text_n.json");
                 
                 //UnitxtGC.BinToJson(@"..\..\..\Files\GC\text_o.pr2");
                 //UnitxtGC.JsonToBin(@"..\..\..\Files\GC\text_n.json");
 
-                UnitxtXB.BinToJson(@"..\..\..\Files\XB\text_o.pr2");
-                UnitxtXB.JsonToBin(@"..\..\..\Files\XB\text_n.json");
+                //UnitxtXB.BinToJson(@"..\..\..\Files\XB\text_o.pr2");
+                //UnitxtXB.JsonToBin(@"..\..\..\Files\XB\text_n.json");
             }
             catch (Exception ex)
             {
@@ -185,33 +185,6 @@ namespace PSOCT
             ba.Write(data, 0, cprs_size);
 
             return ba.Buffer;
-        }
-
-        internal static string JsonSerialize(object data, bool format = false)
-        {
-            StringBuilder sb = new StringBuilder();
-            JsonTextWriter jw = new JsonTextWriter(new StringWriter(sb));
-            JsonSerializer js = new JsonSerializer();
-
-            if (format)
-            {
-                jw.Formatting = Formatting.Indented;
-                jw.Indentation = 4;
-                jw.IndentChar = ' ';
-            }
-
-            js.Serialize(jw, data);
-
-            return sb.ToString();
-        }
-        internal static T JsonDeserialize<T>(byte[] data, int offset, int count)
-        {
-            using (StreamReader sr = new StreamReader(new MemoryStream(data, offset, count)))
-            {
-                JsonSerializer json = new JsonSerializer();
-                json.ObjectCreationHandling = ObjectCreationHandling.Replace;
-                return json.Deserialize<T>(new JsonTextReader(sr));
-            }
         }
     }
 }

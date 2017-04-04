@@ -12,7 +12,7 @@ namespace PSOCT
         {
             byte[] data = File.ReadAllBytes(filename);
             Dictionary<string, int> stringAddresses = new Dictionary<string, int>();
-            UnitxtFile unitxt = PSOCT.JsonDeserialize<UnitxtFile>(data, 0, data.Length);
+            UnitxtFile unitxt = Json.Deserialize<UnitxtFile>(data, 0, data.Length);
 
             int pr3_pointers = 0;
             // Add all the strings as well as the group pointer
@@ -217,7 +217,7 @@ namespace PSOCT
                 unitxt.StringGroups[i1].count = unitxt.StringGroups[i1].entries.Count;
             }
 
-            string jsonText = PSOCT.JsonSerialize(unitxt, true);
+            string jsonText = Json.Serialize(unitxt, true);
             File.WriteAllText(Path.ChangeExtension(filename, ".json"), jsonText);
         }
     }

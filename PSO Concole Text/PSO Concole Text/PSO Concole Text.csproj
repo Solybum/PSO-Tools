@@ -44,6 +44,7 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Json.cs" />
     <Compile Include="UnitxtDC.cs" />
     <Compile Include="UnitxtXB.cs" />
     <Compile Include="UnitxtGC.cs" />
