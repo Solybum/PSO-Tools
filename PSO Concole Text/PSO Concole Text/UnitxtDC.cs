@@ -146,11 +146,19 @@ namespace PSOCT
 
             List<int> shortPointerTable = new List<int>();
             int chain = 0;
+
+            Console.Clear();
             for (int i1 = 0; i1 < shortPointerTableCount; i1++)
             {
                 chain = baPR3.ReadI16() * 4 + chain;
                 shortPointerTable.Add(chain);
-                Console.WriteLine("{0:X8} - {1:X8}: {2:X8} => {3:X8}", i1, baPR3.Position - 2, shortPointerTable[i1], baPR2.ReadI32(chain));
+                Console.WriteLine("{0:X8} - {1:X8}: {2:X8} => {3:X8} == {4:X8} | {5}",
+                    i1,
+                    baPR3.Position - 2,
+                    shortPointerTable[i1],
+                    baPR2.ReadI32(chain),
+                    baPR2.ReadI32(baPR2.ReadI32(chain)),
+                    baPR2.ReadStringA(-1, baPR2.ReadI32(chain)).Replace("\n", "\\n"));
             }
 
             // Read starting pointers for the PR2 data
