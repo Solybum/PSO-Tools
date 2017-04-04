@@ -32,7 +32,7 @@ namespace PSOCT
                 //UnitxtGC.JsonToBin(@"..\..\..\Files\GC\text_n.json");
 
                 //UnitxtXB.BinToJson(@"..\..\..\Files\XB\text_o.pr2");
-                UnitxtXB.JsonToBin(@"..\..\..\Files\XB\text_n.json");
+                //UnitxtXB.JsonToBin(@"..\..\..\Files\XB\text_n.json");
             }
             catch (Exception ex)
             {

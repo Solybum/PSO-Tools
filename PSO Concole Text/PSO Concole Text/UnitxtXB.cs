@@ -8,7 +8,7 @@ namespace PSOCT
 {
     public abstract class UnitxtXB
     {
-        public static int strinGroupCount = 68;
+        public static int strinGroupCount = 69;
 
         public static void JsonToBin(string filename)
         {
@@ -68,7 +68,7 @@ namespace PSOCT
             }
             // Table count offset, needed at the end
             int tableCountOffset = baPr2.Position;
-            baPr2.Write(2);
+            baPr2.Write(unitxt.tableValue);
             baPr2.Write(tablePointer);
 
             for (int i1 = 0; i1 < strinGroupCount; i1++)
@@ -78,14 +78,7 @@ namespace PSOCT
                 {
                     // Instead of getting the addresses from the strings themselves
                     // Just use the dict, no duplicates :)
-                    try
-                    {
-                        baPr2.Write(stringAddresses[unitxt.StringGroups[i1].entries[i2]]);
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine(ex);
-                    }
+                    baPr2.Write(stringAddresses[unitxt.StringGroups[i1].entries[i2]]);
                 }
             }
             int stringGroupOffset = baPr2.Position;
