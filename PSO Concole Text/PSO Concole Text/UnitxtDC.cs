@@ -150,7 +150,7 @@ namespace PSOCT
             {
                 chain = baPR3.ReadI16() * 4 + chain;
                 shortPointerTable.Add(chain);
-                Console.WriteLine("{0:X8} - {1:X8}: {2:X8} => {3:X8}", i1, baPR3.Position, shortPointerTable[i1], baPR2.ReadI32(chain));
+                Console.WriteLine("{0:X8} - {1:X8}: {2:X8} => {3:X8}", i1, baPR3.Position - 2, shortPointerTable[i1], baPR2.ReadI32(chain));
             }
 
             // Read starting pointers for the PR2 data

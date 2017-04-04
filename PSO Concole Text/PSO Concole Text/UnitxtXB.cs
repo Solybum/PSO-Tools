@@ -8,6 +8,8 @@ namespace PSOCT
 {
     public abstract class UnitxtXB
     {
+        public static int strinGroupCount = 68;
+
         public static void JsonToBin(string filename)
         {
             byte[] data = File.ReadAllBytes(filename);
@@ -16,7 +18,7 @@ namespace PSOCT
 
             int pr3_pointers = 0;
             // Add all the strings as well as the group pointer
-            for (int i1 = 0; i1 < 44; i1++)
+            for (int i1 = 0; i1 < strinGroupCount; i1++)
             {
                 pr3_pointers += 1;
                 pr3_pointers += unitxt.StringGroups[i1].entries.Count;
@@ -26,7 +28,7 @@ namespace PSOCT
             ByteArray baPr2 = new ByteArray(1024 * 1024);
             ByteArray baPr3 = new ByteArray((pr3_pointers + 5) * 2 + 32);
 
-            for (int i1 = 0; i1 < 44; i1++)
+            for (int i1 = 0; i1 < strinGroupCount; i1++)
             {
                 for (int i2 = 0; i2 < unitxt.StringGroups[i1].entries.Count; i2++)
                 {
@@ -69,18 +71,25 @@ namespace PSOCT
             baPr2.Write(2);
             baPr2.Write(tablePointer);
 
-            for (int i1 = 0; i1 < 44; i1++)
+            for (int i1 = 0; i1 < strinGroupCount; i1++)
             {
                 unitxt.StringGroups[i1].groupOffset = baPr2.Position;
                 for (int i2 = 0; i2 < unitxt.StringGroups[i1].entries.Count; i2++)
                 {
                     // Instead of getting the addresses from the strings themselves
                     // Just use the dict, no duplicates :)
-                    baPr2.Write(stringAddresses[unitxt.StringGroups[i1].entries[i2]]);
+                    try
+                    {
+                        baPr2.Write(stringAddresses[unitxt.StringGroups[i1].entries[i2]]);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex);
+                    }
                 }
             }
             int stringGroupOffset = baPr2.Position;
-            for (int i1 = 0; i1 < 44; i1++)
+            for (int i1 = 0; i1 < strinGroupCount; i1++)
             {
                 baPr2.Write(unitxt.StringGroups[i1].groupOffset);
             }
@@ -158,12 +167,9 @@ namespace PSOCT
             // Judging by other REL files this is the count, but the data says 023C0000... 
             // Could be an error in the data? We'll find out
             baPR2.Position = unitxtTablesPointer;
-            int unitxtTableCount = baPR2.ReadI32();
-            // Set the actual count we don't care about that value
-            unitxtTableCount = 2;
+            unitxt.tableValue = baPR2.ReadI32();
             int unitxtTablePointer = baPR2.ReadI32();
-
-            for (int i1 = 0; i1 < unitxtTableCount; i1++)
+            for (int i1 = 0; i1 < 2; i1++)
             {
                 baPR2.Position = baPR2.ReadI32(unitxtTablePointer + i1 * 4);
 
@@ -176,16 +182,16 @@ namespace PSOCT
                 }
             }
 
-            for (int i1 = 0; i1 < 44; i1++)
+            for (int i1 = 0; i1 < strinGroupCount; i1++)
             {
                 unitxt.StringGroups.Add(new UnitxtGroup() { name = string.Format("Group {0:D2}", i1) });
 
-                int groupPointer = shortPointerTable[shortPointerTable.Count - 46 + i1];
+                int groupPointer = shortPointerTable[shortPointerTable.Count - (strinGroupCount + 2) + i1];
                 int groupAddress = baPR2.ReadI32(groupPointer);
 
-                int nextGroupPointer = shortPointerTable[shortPointerTable.Count - 46 + i1 + 1];
+                int nextGroupPointer = shortPointerTable[shortPointerTable.Count - (strinGroupCount + 2) + (i1 + 1)];
                 int nextGroupAddress = baPR2.ReadI32(nextGroupPointer);
-                if (i1 >= 43)
+                if (i1 >= (strinGroupCount - 1))
                 {
                     nextGroupPointer = shortPointerTable[shortPointerTable.Count - 1];
                     nextGroupAddress = baPR2.ReadI32(nextGroupPointer);
