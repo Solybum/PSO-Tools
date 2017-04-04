@@ -4,11 +4,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("PSO Concole Text")]
+[assembly: AssemblyTitle("PSO Console Text")]
 [assembly: AssemblyDescription("Utility to convert PSO Console text files between PRC and JSON")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("PSO Concole Text")]
+[assembly: AssemblyProduct("PSO Console Text")]
 [assembly: AssemblyCopyright("Copyright © Soleil Rojas 2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
