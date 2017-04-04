@@ -63,6 +63,10 @@ namespace PSOCT
                 {
                     system = 2;
                 }
+                else if (string.Compare(args[0], "-xb", StringComparison.InvariantCultureIgnoreCase) == 0)
+                {
+                    system = 3;
+                }
 
                 if (string.Compare(args[1], "-json2bin", StringComparison.InvariantCultureIgnoreCase) == 0)
                 {
@@ -82,6 +86,7 @@ namespace PSOCT
                     "    -system:   Which system the file to be processed belongs to\n" +
                     "        -dc\n" +
                     "        -gc\n" +
+                    "        -xb\n" +
                     "\n" +
                     "    -mode:     Selects which operation mode to use\n" +
                     "        -json2bin: Converts a json text file into a pr2/pr3 file pair.\n" +
@@ -102,18 +107,6 @@ namespace PSOCT
                     Console.WriteLine(ex);
                 }
             }
-
-#if DEBUG
-            try
-            {
-                //ProcessFile(@"..\..\..\Files\text_d.pr3", 2);
-                //ProcessFile(@"..\..\..\Files\text_d.json", 1);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex);
-            }
-#endif
         }
         private void ProcessFile(string path, int system, int mode)
         {
@@ -137,6 +130,17 @@ namespace PSOCT
                 else if (mode == 2)
                 {
                     UnitxtGC.BinToJson(path);
+                }
+            }
+            else if (system == 3)
+            {
+                if (mode == 1)
+                {
+                    UnitxtXB.JsonToBin(path);
+                }
+                else if (mode == 2)
+                {
+                    UnitxtXB.BinToJson(path);
                 }
             }
         }
