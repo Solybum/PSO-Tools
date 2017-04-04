@@ -22,8 +22,8 @@ namespace PSOCT
 #if DEBUG
             try
             {
-                UnitxtDC.BinToJson(@"..\..\..\Files\DC\text_o.pr2");
-                //UnitxtDC.JsonToBin(@"..\..\..\Files\DC\text_n.json");
+                //UnitxtDC.BinToJson(@"..\..\..\Files\DC\text_o.pr2");
+                UnitxtDC.JsonToBin(@"..\..\..\Files\DC\text_n.json");
                 
                 //UnitxtGC.BinToJson(@"..\..\..\Files\GC\text_o.pr2");
                 //UnitxtGC.JsonToBin(@"..\..\..\Files\GC\text_n.json");

@@ -8,7 +8,7 @@ namespace PSOCT
 {
     public abstract class UnitxtGC
     {
-        public static int strinGroupCount = 44;
+        public static int stringGroupCount = 44;
 
         public static void JsonToBin(string filename)
         {
@@ -18,7 +18,7 @@ namespace PSOCT
 
             int pr3_pointers = 0;
             // Add all the strings as well as the group pointer
-            for (int i1 = 0; i1 < strinGroupCount; i1++)
+            for (int i1 = 0; i1 < stringGroupCount; i1++)
             {
                 pr3_pointers += 1;
                 pr3_pointers += unitxt.StringGroups[i1].entries.Count;
@@ -28,7 +28,7 @@ namespace PSOCT
             ByteArray baPr2 = new ByteArray(1024 * 1024);
             ByteArray baPr3 = new ByteArray((pr3_pointers + 5) * 2 + 32);
 
-            for (int i1 = 0; i1 < strinGroupCount; i1++)
+            for (int i1 = 0; i1 < stringGroupCount; i1++)
             {
                 for (int i2 = 0; i2 < unitxt.StringGroups[i1].entries.Count; i2++)
                 {
@@ -74,7 +74,7 @@ namespace PSOCT
             baPr2.Endianess = Endianess.BigEndian;
             baPr2.Write(tablePointer);
 
-            for (int i1 = 0; i1 < strinGroupCount; i1++)
+            for (int i1 = 0; i1 < stringGroupCount; i1++)
             {
                 unitxt.StringGroups[i1].groupOffset = baPr2.Position;
                 for (int i2 = 0; i2 < unitxt.StringGroups[i1].entries.Count; i2++)
@@ -85,7 +85,7 @@ namespace PSOCT
                 }
             }
             int stringGroupOffset = baPr2.Position;
-            for (int i1 = 0; i1 < strinGroupCount; i1++)
+            for (int i1 = 0; i1 < stringGroupCount; i1++)
             {
                 baPr2.Write(unitxt.StringGroups[i1].groupOffset);
             }
@@ -141,11 +141,9 @@ namespace PSOCT
             ByteArray baPR2 = new ByteArray(dataPR2);
             ByteArray baPR3 = new ByteArray(dataPR3);
 
-            // This offset is not BE
             int shortPointerTableOffset = baPR3.ReadI32();
             baPR3.Endianess = Endianess.BigEndian;
             int shortPointerTableCount = baPR3.ReadI32();
-            // We don't care about the rest
             baPR3.Position = shortPointerTableOffset;
 
             List<int> shortPointerTable = new List<int>();
@@ -176,24 +174,23 @@ namespace PSOCT
                 baPR2.Position = baPR2.ReadI32(unitxtTablePointer + i1 * 4);
 
                 unitxt.SomeTables.Add(new List<short>());
-                // Each table has 112 entries, apparently
-                for (int i2 = 0; i2 < 112; i2++)
+                for (int i2 = 0; i2 < 0xE0; i2++)
                 {
                     short value = baPR2.ReadI16();
                     unitxt.SomeTables[i1].Add(value);
                 }
             }
 
-            for (int i1 = 0; i1 < strinGroupCount; i1++)
+            for (int i1 = 0; i1 < stringGroupCount; i1++)
             {
                 unitxt.StringGroups.Add(new UnitxtGroup() { name = string.Format("Group {0:D2}", i1) });
 
-                int groupPointer = shortPointerTable[shortPointerTable.Count - (strinGroupCount + 2) + i1];
+                int groupPointer = shortPointerTable[shortPointerTable.Count - (stringGroupCount + 2) + i1];
                 int groupAddress = baPR2.ReadI32(groupPointer);
 
-                int nextGroupPointer = shortPointerTable[shortPointerTable.Count - (strinGroupCount + 2) + (i1 + 1)];
+                int nextGroupPointer = shortPointerTable[shortPointerTable.Count - (stringGroupCount + 2) + (i1 + 1)];
                 int nextGroupAddress = baPR2.ReadI32(nextGroupPointer);
-                if (i1 >= (strinGroupCount - 1))
+                if (i1 >= (stringGroupCount - 1))
                 {
                     nextGroupPointer = shortPointerTable[shortPointerTable.Count - 1];
                     nextGroupAddress = baPR2.ReadI32(nextGroupPointer);
@@ -202,15 +199,8 @@ namespace PSOCT
                 while (groupAddress < nextGroupAddress)
                 {
                     int stringPointer = baPR2.ReadI32(groupAddress);
-                    try
-                    {
-                        string text = baPR2.ReadStringA(-1, stringPointer);
-                        unitxt.StringGroups[i1].entries.Add(text);
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine(ex);
-                    }
+                    string text = baPR2.ReadStringA(-1, stringPointer);
+                    unitxt.StringGroups[i1].entries.Add(text);
 
                     groupAddress += 4;
                 }
