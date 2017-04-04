@@ -1,0 +1,887 @@
+{
+    "SomeTables": [
+        [
+            21,
+            21,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            2,
+            2,
+            17,
+            17,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            48,
+            46,
+            44,
+            39,
+            34,
+            18,
+            18,
+            65,
+            66,
+            67,
+            68,
+            69,
+            70,
+            71,
+            72,
+            73,
+            74,
+            75,
+            76,
+            77,
+            64,
+            15,
+            15,
+            78,
+            79,
+            80,
+            81,
+            82,
+            83,
+            84,
+            85,
+            86,
+            87,
+            88,
+            89,
+            90,
+            39,
+            16,
+            16,
+            97,
+            98,
+            99,
+            100,
+            101,
+            102,
+            103,
+            104,
+            105,
+            106,
+            107,
+            108,
+            109,
+            33,
+            20,
+            20,
+            110,
+            111,
+            112,
+            113,
+            114,
+            115,
+            116,
+            117,
+            118,
+            119,
+            120,
+            121,
+            122,
+            63,
+            1,
+            1,
+            19,
+            19,
+            19,
+            19,
+            19,
+            19,
+            19,
+            19,
+            19,
+            19,
+            0,
+            0,
+            0,
+            0
+        ],
+        [
+            21,
+            21,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            2,
+            2,
+            17,
+            17,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            48,
+            46,
+            44,
+            39,
+            34,
+            18,
+            18,
+            33,
+            63,
+            34,
+            35,
+            36,
+            37,
+            38,
+            40,
+            41,
+            42,
+            47,
+            22,
+            22,
+            22,
+            15,
+            15,
+            22,
+            22,
+            22,
+            22,
+            22,
+            22,
+            22,
+            123,
+            125,
+            61,
+            95,
+            59,
+            58,
+            22,
+            16,
+            16,
+            22,
+            22,
+            22,
+            22,
+            22,
+            22,
+            22,
+            91,
+            93,
+            22,
+            124,
+            126,
+            94,
+            22,
+            20,
+            20,
+            22,
+            22,
+            22,
+            22,
+            22,
+            22,
+            22,
+            60,
+            62,
+            22,
+            64,
+            43,
+            45,
+            22,
+            1,
+            1,
+            19,
+            19,
+            19,
+            19,
+            19,
+            19,
+            19,
+            19,
+            19,
+            19,
+            0,
+            0,
+            0,
+            0
+        ]
+    ],
+    "StringGroups": [
+        {
+            "name": "Group 00",
+            "count": 4,
+            "entries": [
+                "An error has occurred.  ",
+                "Please insert the PSO Episode 1 & 2 Game Disc.",
+                "This is not the PSO Episode1 & 2 Game Disc. Please insert the PSO Episode1 & 2 Game Disc.",
+                "This is not the PSO Episode1 & 2 Game Disc.\nPlease insert the PSO Episode1 & 2 Game Disc."
+            ]
+        },
+        {
+            "name": "Group 01",
+            "count": 31,
+            "entries": [
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+            ]
+        },
+        {
+            "name": "Group 02",
+            "count": 4,
+            "entries": [
+                "Agree",
+                "Disagree",
+                "Agree",
+                "Disagree"
+            ]
+        },
+        {
+            "name": "Group 03",
+            "count": 35,
+            "entries": [
+                "Creating System Data.\n\nPlease don't turn off your Xbox console.",
+                "Creating Character Data.\n\nPlease don't turn off your Xbox console.",
+                "Creating Guild Card Data.\n\nPlease don't turn off your Xbox console.",
+                "Creating Snapshot Data.\n\nPlease don't turn off your Xbox console.",
+                "Creating Network Data.\n\nPlease don't turn off your Xbox console.",
+                "Unable to load Game Data.\nGame Data is damaged.",
+                "Unable to load System Data.\nSystem Data is damaged.",
+                "Unable to load Character Data.\nCharacter Data is damaged.",
+                "Unable to load Guild Card Data.\nGuild Card Data is damaged.",
+                "Unable to load Snapshot Data.\nSnapshot Data is damaged.",
+                "New System Data will be created.\nPrevious Character Data will be deleted.",
+                "New System Data will be created.\nPrevious Guild Card Data will be deleted.",
+                "New System Data will be created.\nPrevious Snapshot Data will be deleted.",
+                "Please free more blocks on your Xbox and try again.",
+                "Please delete your Save Data and restart the game.",
+                "There is not enough free blocks\nto save Game Data.\nPlease free %d blocks.\n",
+                "Press the A button or START button\nto free more blocks.",
+                "Are you sure you want to delete, and create a new one? ",
+                "Switch to Xbox Dashboard",
+                "Retry",
+                "YES",
+                "NO",
+                "Creating Game Data.\n\nPlease don't turn off your Xbox console.",
+                "Unable to load Game Data.\nAll of the Game Data is damaged.",
+                "All Game Data will be deleted, and new Game Data will be created. \nIs this okay?",
+                "Unable to load Game Data.\nPart of the Game Data is damaged.",
+                "Part of the Game Data will be deleted, and new Game Data will be created. \nIs this okay?",
+                "Could not create Game Data.",
+                "Game Data",
+                "System Data",
+                "Character Data",
+                "Guild Card Data",
+                "Snapshot Data",
+                "Press the A button to go to the Title Screen.",
+                "Press the A button\nto swicth to the Xbox Dashboard."
+            ]
+        },
+        {
+            "name": "Group 04",
+            "count": 1,
+            "entries": [
+                "Display Progressive Mode?"
+            ]
+        },
+        {
+            "name": "Group 05",
+            "count": 12,
+            "entries": [
+                "Please select character.",
+                "Confirm",
+                "Dressing Room",
+                "Cancel",
+                "Recreate",
+                "This character omits game closing normally. ",
+                "Item data etc. is eliminated.",
+                "Voice Masking",
+                "Move character",
+                "Return from MU",
+                "Change name",
+                "Cancel move"
+            ]
+        },
+        {
+            "name": "Group 06",
+            "count": 15,
+            "entries": [
+                "Please select Player %d's character.",
+                "Return a character that\nwas moved to the hard disk.",
+                "Play with this",
+                "Return to MU",
+                "Delete",
+                "Cancel",
+                "Moving... \nDo not remove\nthe MU.",
+                "Original\nCharacter Data\nnot found.\nConnect the MU\ncontaining original\nCharacter Data.",
+                "Would you like\nto move this\ncharacter?",
+                "This character\nwill be returned to\nthe original MU.\nIs this okay?",
+                "This temporary character\nand the same character's\nitem data on the\nhard disk will be deleted.\nIs this okay?",
+                "Please connect controller.",
+                "You need to connect at least two controllers.",
+                "This character omits game closing normally. ",
+                "Item data etc. is eliminated."
+            ]
+        },
+        {
+            "name": "Group 07",
+            "count": 6,
+            "entries": [
+                "No Memory Unit detected in Slot A.\nPlease insert a Memory Unit in Slot A.",
+                "The Memory Unit in Slot A is damaged\nand needs to be formatted.",
+                "Saving Game Data.\nPlease don't turn off your Xbox console.",
+                "Unable to save.\nCannot find the Save file created\nduring start of this game. \n\nPlease insert the original\nMemory Unit into Slot A.",
+                "Unable to save.\nCannot find the Save file created\nduring start of this game. \n\nPlease insert the original\nMemory Unit into Slot A.",
+                "The Memory Unit was extracted during save.\n It returns to Title Screen.\n\nPress any button."
+            ]
+        },
+        {
+            "name": "Group 08",
+            "count": 3,
+            "entries": [
+                "Returning to Game Set Up Selection screen",
+                "Returning to Character Selection screen",
+                "Ending game."
+            ]
+        },
+        {
+            "name": "Group 09",
+            "count": 2,
+            "entries": [
+                "In order to connect to the network,\nthe Nintendo GameCube Modem Adaptor or\nBroadband Adaptor must be inserted properly. \n\nPlease turn the power off to insert\nthe GameCube Modem Adaptor or Broadband Adaptor.",
+                "Device connected to Serial Port 1\ncannot be recognized.\n\nUnable to connect to Network."
+            ]
+        },
+        {
+            "name": "Group 10",
+            "count": 1,
+            "entries": [
+                "no data"
+            ]
+        },
+        {
+            "name": "Group 11",
+            "count": 13,
+            "entries": [
+                "In order to use the Snapshot function, \na Snapshot file must be created first. \n\nWould you like to create this file?",
+                "No Memory Unit detected in Slot B.\nPlease insert a Memory Unit in Slot B.",
+                "The Memory Unit in Slot B is damaged\nand needs to be formatted.\n\nDo you want to format?",
+                "The Memory Unit in Slot B is damaged\nand cannot be used. ",
+                "There is insufficient space to save\nall types of new files.\n\nPSO Episode 1 & 2 requires:\n1 file and 15 blocks to save a Snapshot.\nExisting files may be loaded and\noverwritten.",
+                "There is insufficient space to save\nall types of new files.\n\nPSO Episode 1 & 2 requires:\n1 file and 15 blocks to save a Snapshot.\nExisting files may be loaded and\noverwritten.",
+                "Creating new Snapshot file. \nDo not remove the Memory Unit in Slot B.",
+                "The Snapshot file in Slot B is damaged\nand must be deleted.",
+                "Now Formatting.\nDo not remove the Memory Unit\nor turn the power off.",
+                "Formatting failed.",
+                "The device in Slot B is not supported.\nReplace with a Memory Unit.",
+                "Overwrite Snapshot file.\nOK?\n\n A Button : OK\n B Button : Cancel",
+                "The Memory Unit in Slot B contains\nno Snapshot file."
+            ]
+        },
+        {
+            "name": "Group 12",
+            "count": 1,
+            "entries": [
+                "Are you ready?"
+            ]
+        },
+        {
+            "name": "Group 13",
+            "count": 6,
+            "entries": [
+                "???",
+                "Type",
+                "ID",
+                "Time",
+                "Details Off",
+                "Details On"
+            ]
+        },
+        {
+            "name": "Group 14",
+            "count": 1,
+            "entries": [
+                "Please check that the Serial Number, Access Key,\nand Password are correct.\n\nPress \"Yes\" to go forward, \"No\" to go back."
+            ]
+        },
+        {
+            "name": "Group 15",
+            "count": 2,
+            "entries": [
+                "Cancel",
+                "Confirm"
+            ]
+        },
+        {
+            "name": "Group 16",
+            "count": 10,
+            "entries": [
+                "Memory Unit is not inserted.",
+                "Select Memory Unit.",
+                "The Memory Unit in Slot B is damaged\nand cannot be used. ",
+                "The Memory Unit in Slot B is\nnot compatible.",
+                "The Memory Unit in Slot B is damaged\nand needs to be formatted.\nDo you want to format?",
+                "Download Quest Data\nsave completed.\n\nTo play a downloaded\nquest now,\nplease enter a ship and\nselect [Quit Game].\n\nPress A or START button.",
+                "Your Xbox doesn't have \nenough free blocks to save\nDownload Quest Data.\n\n<lack block> more free blocks\nare required to save\nthe Download Quest\nto the hard disk.\n\nPlease press A/START button.",
+                "Your Xbox doesn't have \nenough free blocks to save\nDownload Quest Data.\n\n<lack block> more free blocks\nare required to save\nthe Download Quest\nto the hard disk.\n\nPlease press A/START button.",
+                "Download Quest Data\nwith the same name\nalready exists.\nWould you like to overwrite it?",
+                "Saving Download Quest Data.\nPlease don't turn off\nyour Xbox console."
+            ]
+        },
+        {
+            "name": "Group 17",
+            "count": 1,
+            "entries": [
+                "Save your password to the Memory Unit?\n\nThe password must be entered each time\nwhen playing online if it is not saved to\nthe Memory Unit."
+            ]
+        },
+        {
+            "name": "Group 18",
+            "count": 8,
+            "entries": [
+                "You have cleared Challenge Mode,\nRank S. Congratulations!\nYou will be given a prize.",
+                "You have cleared Challenge Mode,\nRank B. You will be given a prize.",
+                "You have cleared Challenge Mode,\nRank A. You will be given a prize.",
+                "You have already received a prize.",
+                "Your inventory is full--\nyou cannot hold your prize.",
+                "Error !!",
+                "You have cleared\nthe Challenge Stage. \nCongratulations!",
+                "Please select an item."
+            ]
+        },
+        {
+            "name": "Group 19",
+            "count": 34,
+            "entries": [
+                "Do not accept future Guild Cards",
+                "s Guild Card\nwill be blocked.\n Is this okay?",
+                "Voice Masking",
+                "Voice Banning",
+                "Voice: off",
+                "No Masking",
+                "Masking1",
+                "Masking2",
+                "Masking3",
+                "Masking4",
+                "Masking5",
+                "Standard",
+                "Are you sure\nyou want to\nchange settings?",
+                " 's\nVoice will be\nturned ON.\nIs this okay?",
+                " 's \nVoice will be\nturned OFF.\nIs this okay?",
+                "Voice Masking test.\nVoice that will be heard by\nother people around you.\nEnd with A/START.",
+                "Send Player Feedback to Xbox Live?",
+                "Feedback",
+                "Feedback",
+                "Complaints",
+                "Good Attitude",
+                "Great Session",
+                "Bad Name",
+                "Cheating",
+                "Spamming or Screaming",
+                "Threats or Harassment",
+                "Cursing or Lewdness ",
+                "Show connection",
+                "Hide connection",
+                "Invite %s\nto Phantasy Star Online?",
+                "%s has received an\nInvite from %s.\nAccept Invite?",
+                "Accepted Invite",
+                "Declined Invite",
+                "Please insert\nthe %s game disc.\n\nPress the B button\nto go to the Title Screen."
+            ]
+        },
+        {
+            "name": "Group 20",
+            "count": 3,
+            "entries": [
+                "Enter the PASS CODE you selected when\nyou created your GAMERTAG.",
+                "The PASS CODE you entered does not match\nthe registered PASS CODE. \nPlease enter the PASS CODE you registered\nwhen creating your GAMERTAG.\nPress A or START\nto return to the PASS CODE entry screen.",
+                "Enter"
+            ]
+        },
+        {
+            "name": "Group 21",
+            "count": 5,
+            "entries": [
+                "Please select Game Mode.",
+                "ONLINE GAME",
+                "OFFLINE GAME",
+                "OPTIONS",
+                "HOME PAGE"
+            ]
+        },
+        {
+            "name": "Group 22",
+            "count": 2,
+            "entries": [
+                "%04d/%02d/%02d",
+                "NEW GAME DATA"
+            ]
+        },
+        {
+            "name": "Group 23",
+            "count": 4,
+            "entries": [
+                "Confirm",
+                "Cancel",
+                "Delete",
+                "If you select\nDelete,\nall character\ndata will be lost.\nIs this okay?"
+            ]
+        },
+        {
+            "name": "Group 24",
+            "count": 2,
+            "entries": [
+                "Please select GAME DATA",
+                "GAMERTAG\nyou used to create Game Data\nno longer exists.\nPlease use your original GAMERTAG.\nPlease press A or START."
+            ]
+        },
+        {
+            "name": "Group 25",
+            "count": 2,
+            "entries": [
+                "New Account",
+                "Please select GAMERTAG"
+            ]
+        },
+        {
+            "name": "Group 26",
+            "count": 10,
+            "entries": [
+                "NO GAMERTAG",
+                "",
+                "MU 1A",
+                "MU 1B",
+                "MU 2A",
+                "MU 2B",
+                "MU 3A",
+                "MU 3B",
+                "MU 4A",
+                "MU 4B"
+            ]
+        },
+        {
+            "name": "Group 27",
+            "count": 2,
+            "entries": [
+                "Switching to the Xbox Dashboard.\nOkay?",
+                "Is this\nGAMERTAG okay?"
+            ]
+        },
+        {
+            "name": "Group 28",
+            "count": 21,
+            "entries": [
+                "Connect to Xbox Live",
+                "(No.300)\nYour Xbox console cannot connect to Xbox Live.\nPress A to start the troubleshooter or B to cancel.",
+                "(No.301)\nYour Xbox console cannot connect to Xbox Live.\nPress A to start the troubleshooter or B to cancel.",
+                "(No.302)\nYour Xbox console cannot connect to Xbox Live.\nPress A to start the troubleshooter or B to cancel.",
+                "(No.303)\nYou were signed out of Xbox Live \nbecause another person signed on using your account.  \nPress A to continue.",
+                "(No.304)\nThe Xbox Live service is very busy.  \nPress A to try again or press B to cancel.",
+                "(No.305)\nA required update is available for the Xbox Live service.  \nPress A to update or B to cancel.  You cannot connect\nto Xbox Live until the update is installed.",
+                "Update",
+                "Cancel",
+                "(No.306)\nYou have a new Xbox Live message.  \nPress A to read the message now, \nor B to read later.",
+                "read",
+                "read later",
+                "(No.307)\nYou have an important message from Xbox Live.  \nPress A to read the message.",
+                "(No.308)\nYour Xbox console cannot connect to Xbox Live.\nPress A to start the troubleshooter or B to cancel.",
+                "(No.309)\nThis character name cannot be used on Xbox Live. \nPress A to use the Character Select screen\nto rename your character.",
+                "(No.310)\nYou have been\nlogged out of Xbox Live. \n\nPRESS START BUTTON.\n%s",
+                "(No.311)\nYour Xbox console cannot \nconnect to Xbox Live.\nPRESS START BUTTON.\n%s",
+                "(No.312)\nYou were signed out of\nXbox Live because\nanother person signed on\nusing your account.\nPRESS START BUTTON.\n%s",
+                "(No.313)\nYou have been\nlogged out of Xbox Live\ndue to overcrowding on\nthe Xbox Live service.\nPRESS START BUTTON.\n%s",
+                "(No.314)\nThere is an update required\nfor connection to Xbox Live.\n\nPRESS START BUTTON.\n%s",
+                "(No.315)\nA valid Hunter's License is required.\nPress A to use the Options Screen\nto purchase a Hunter's License."
+            ]
+        },
+        {
+            "name": "Group 29",
+            "count": 3,
+            "entries": [
+                "Re-connect to\ncontroller port %d,\nand continue the game.",
+                "Re-connect to\ncontroller port %d,\nand continue the game.",
+                "Re-connect to\ncontroller port,\nand continue the game."
+            ]
+        },
+        {
+            "name": "Group 30",
+            "count": 1,
+            "entries": [
+                "The network configuration is not performed.\nPlease try again\nafter an account has been issued.\n\nPress A or START button\nto swicth to the Xbox Dashboard."
+            ]
+        },
+        {
+            "name": "Group 31",
+            "count": 2,
+            "entries": [
+                "NEW CHARACTER",
+                "LV%d"
+            ]
+        },
+        {
+            "name": "Group 32",
+            "count": 9,
+            "entries": [
+                "Want to create\nnew Play\nCharacter?",
+                "%d Meseta\nis needed to\nmake this\nchange. \nIs this OK? ",
+                "This character\nwill be deleted,\nand a new\ncharacter will\nbe created.\nIs this OK?",
+                "<Warning>\nThis character has been moved to\na different MU, as a temporary character. \nThe move can be cancelled,\nbut this will result in a loss of all items,\nand you will not be able to return the\nmoved Character Data to hard disk.\nIs this okay?",
+                "Play with this",
+                "Return to MU",
+                "Delete",
+                "Cancel",
+                "This temporary\ncharacter and same\ncharaceter's item\ndata in hard disk\nwill be deleted.\nIs this okay?"
+            ]
+        },
+        {
+            "name": "Group 33",
+            "count": 1,
+            "entries": [
+                "Entry: Press the A button"
+            ]
+        },
+        {
+            "name": "Group 34",
+            "count": 1,
+            "entries": [
+                "%s\nUnable to load\nCharacter Data.\nCharacter Data is\ndamaged."
+            ]
+        },
+        {
+            "name": "Group 35",
+            "count": 1,
+            "entries": [
+                "Unable to load Character Data.\nCharacter Data is damaged.\nPress the A button or START button \nto go to the Title Screen."
+            ]
+        },
+        {
+            "name": "Group 36",
+            "count": 18,
+            "entries": [
+                "\nPress A or START.\n",
+                "This character in\n%s and the \nsame character's\nitem data\non the hard disk\nwill be deleted.\nOverwrite?",
+                "Not enough\nfree blocks to\nmove character\nto %s.\n%d blocks\nare required.",
+                "Cannot move,\nsame character\nexists on\nthe hard disk.",
+                "The character on\n%s has been\nmoved.",
+                "This is a different\ncharacter.",
+                "Character move\ncancellation failed.",
+                "Deletion of\ntemporary\ncharacter failed.",
+                "Character \nmove failed.",
+                "The chosen\ncharacter has\nbeen moved.",
+                "No character data\nfound on %s.",
+                "Memory Unit is\nnot connected.",
+                "Character's move status has been cancelled.",
+                "Temporary character\ndeleted.",
+                "Character moved.",
+                "Select MU and move character.",
+                "",
+                "Move \nthis character?"
+            ]
+        },
+        {
+            "name": "Group 37",
+            "count": 8,
+            "entries": [
+                "MU 1A",
+                "MU 1B",
+                "MU 2A",
+                "MU 2B",
+                "MU 3A",
+                "MU 3B",
+                "MU 4A",
+                "MU 4B"
+            ]
+        },
+        {
+            "name": "Group 38",
+            "count": 1,
+            "entries": [
+                "Please select Player %d's character."
+            ]
+        },
+        {
+            "name": "Group 39",
+            "count": 1,
+            "entries": [
+                "free blocks:%d"
+            ]
+        },
+        {
+            "name": "Group 40",
+            "count": 58,
+            "entries": [
+                "Greeting motion",
+                "Interaction motion",
+                "Emotion motion",
+                "Acrobatic motion",
+                "Entertainment Motion",
+                "Standard motion",
+                "Battle motion",
+                "Photon Chair",
+                "Photon Chair 1",
+                "Photon Chair 2",
+                "One-handed greeting",
+                "Two-handed greeting",
+                "Japanese greeting",
+                "Western greeting",
+                "Salute",
+                "Affirmative",
+                "Negative",
+                "Question",
+                "Applause",
+                "Come over here",
+                "\"Sorry!\"",
+                "\"Wow!\"",
+                "\"Dang it!\"",
+                "\"I'm bored.\"",
+                "Jump",
+                "Roll",
+                "Cartwheel",
+                "Somersault",
+                "Back roll",
+                "Backflip",
+                "Dance 1",
+                "Dance 2",
+                "Victory Pose 1",
+                "Victory Pose 2",
+                "Victory Pose 3",
+                "Kiss",
+                "Blow a kiss",
+                "Switch",
+                "Guard",
+                "Big Damage",
+                "Small Damage",
+                "Dead",
+                "Wait",
+                "Attack 1",
+                "Attack 2",
+                "Attack 3",
+                "Attack 4",
+                "Attack 5",
+                "Attack 6",
+                "Technique 1",
+                "Technique 2",
+                "Photon Blast 1",
+                "Photon Blast 2",
+                "Photon Blast 3",
+                "Photon Blast 4",
+                "Photon Blast 5",
+                "Man",
+                "Woman"
+            ]
+        },
+        {
+            "name": "Group 41",
+            "count": 30,
+            "entries": [
+                "Detail",
+                "Final Price",
+                "Free period",
+                "Charge continuation",
+                "Recurrence of Charges",
+                "Is it all right?",
+                "(No.400) Cancellation failed. Cancellations are\ncurrently disabled on this account. Please update your\npreferences in the Account Settings area of the Xbox\nDashboard and try again. Press A to continue. ",
+                "(No.401)\nPurchase failed.  \nYou have already purchased this offer.\nPlease try a different offer.\nPress A to continue.",
+                "(No.402)\nPurchase failed.\nYour credit card could not be authorized.\nPlease update your credit card\ninformation in the Billing area of the \nXbox Dashboard and try again.\nPress A to continue.",
+                "(No.403)\nPurchase failed.\nYour credit card has expired.\nPlease update your credit card\ninformation in the Billing area of \nthe Xbox Dashboard and try again.\nPress A to continue.",
+                "(No.404)\nPurchase failed.\nYour billing account is inactive.\nPlease update your billing information\nin the Billing area of the \nXbox Dashboard and try again.\nPress A to continue.",
+                "(No.405)\nPurchase failed.\nYour payment method is invalid.\nPlease supply a new payment\nmethod in the Billing area of the\nXbox Dashboard and try again.\nPress A to continue.",
+                "(No.406)\nOperation can not be continued.\nPress A to continue.",
+                "Purchase Hunter's License",
+                "You can purchase item(s) above.",
+                "",
+                "Purchasing item(s) above.",
+                "",
+                "test",
+                "Tax not",
+                "Tax",
+                "GST",
+                "VAT",
+                "These goods are already purchase settled. \nPress A to continue.",
+                "Go to purchase screen",
+                "Cancel",
+                "Purchase",
+                "Cancel",
+                "Since purchase of the visitor has already\nbeen carried out in these premium contents, \nthe privilege of a free period does not\nget used to use.\nTherefore, fee collection is started with \nthe completion of procedure of re-purchase.\nPress A to continue.",
+                ""
+            ]
+        },
+        {
+            "name": "Group 42",
+            "count": 7,
+            "entries": [
+                "Fight again with\nthe same rules?",
+                "Yes",
+                "No",
+                "Lobby",
+                "The connection has\nbeen dropped. Results\nwill not be recorded.\n\nTransporting to the\nvisual lobby.\nPRESS START BUTTON.",
+                "The connection has\nbeen dropped.\n\nTransporting to the\nvisual lobby.\nPRESS START BUTTON.",
+                "Team battle\nA-TEAM\n  %s\n  %s\nB-TEAM\n  %s\n  %s"
+            ]
+        },
+        {
+            "name": "Group 43",
+            "count": 7,
+            "entries": [
+                "Fight again with\nthe same rules?",
+                "Yes",
+                "No",
+                "Lobby",
+                "The connection has\nbeen dropped. Results\nwill not be recorded.\n\nTransporting to the\nvisual lobby.\nPRESS START BUTTON.",
+                "The connection has\nbeen dropped.\n\nTransporting to the\nvisual lobby.\nPRESS START BUTTON.",
+                "Team battle\nA-TEAM\n  %s\n  %s\nB-TEAM\n  %s\n  %s"
+            ]
+        }
+    ]
+}

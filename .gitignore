@@ -251,4 +251,4 @@ paket-files/
 .idea/
 *.sln.iml
 
-!UnitxtGC/Files/*
+!PSO Concole Text/Files/*
