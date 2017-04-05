@@ -25,8 +25,8 @@ namespace PSOCT
             }
 
             // Whatever, this should be enough, every time
-            ByteArray baPr2 = new ByteArray(1024 * 1024);
-            ByteArray baPr3 = new ByteArray((pr3_pointers + 5) * 2 + 32);
+            ByteArray baPR2 = new ByteArray(1024 * 1024);
+            ByteArray baPR3 = new ByteArray((pr3_pointers + 5) * 2 + 32);
 
             for (int i1 = 0; i1 < stringGroupCount; i1++)
             {
@@ -37,11 +37,11 @@ namespace PSOCT
                     if (!stringAddresses.ContainsKey(unitxt.StringGroups[i1].entries[i2]))
                     {
                         // Save it's address
-                        stringAddresses[unitxt.StringGroups[i1].entries[i2]] = baPr2.Position;
+                        stringAddresses[unitxt.StringGroups[i1].entries[i2]] = baPR2.Position;
                         // Write it out
-                        baPr2.WriteStringA(unitxt.StringGroups[i1].entries[i2], 0, unitxt.StringGroups[i1].entries[i2].Length, true);
+                        baPR2.WriteStringA(unitxt.StringGroups[i1].entries[i2], 0, unitxt.StringGroups[i1].entries[i2].Length, true);
                         // Some padding?
-                        baPr2.Pad(4);
+                        baPR2.Pad(4);
                     }
                 }
             }
@@ -49,77 +49,77 @@ namespace PSOCT
             // Write the tables
             // We'll need the first one 
             List<int> tablePointers = new List<int>();
-            baPr2.Endianess = Endianess.BigEndian;
+            baPR2.Endianess = Endianess.BigEndian;
             for (int i1 = 0; i1 < unitxt.SomeTables.Count; i1++)
             {
                 // Save the table offset
-                tablePointers.Add(baPr2.Position);
+                tablePointers.Add(baPR2.Position);
                 for (int i2 = 0; i2 < unitxt.SomeTables[i1].Count; i2++)
                 {
-                    baPr2.Write(unitxt.SomeTables[i1][i2]);
+                    baPR2.Write(unitxt.SomeTables[i1][i2]);
                 }
             }
 
             // We'll need this offset, it's the beginning of the short table pointer in pr3
-            int tablePointer = baPr2.Position;
+            int tablePointer = baPR2.Position;
             for (int i1 = 0; i1 < unitxt.SomeTables.Count; i1++)
             {
                 // Save the table offset
-                baPr2.Write(tablePointers[i1]);
+                baPR2.Write(tablePointers[i1]);
             }
             // Table count offset, needed at the end
-            int tableCountOffset = baPr2.Position;
-            baPr2.Endianess = Endianess.LittleEndian;
-            baPr2.Write(unitxt.tableValue);
-            baPr2.Endianess = Endianess.BigEndian;
-            baPr2.Write(tablePointer);
+            int tableCountOffset = baPR2.Position;
+            baPR2.Endianess = Endianess.LittleEndian;
+            baPR2.Write(unitxt.tableValue);
+            baPR2.Endianess = Endianess.BigEndian;
+            baPR2.Write(tablePointer);
 
             for (int i1 = 0; i1 < stringGroupCount; i1++)
             {
-                unitxt.StringGroups[i1].groupOffset = baPr2.Position;
+                unitxt.StringGroups[i1].groupOffset = baPR2.Position;
                 for (int i2 = 0; i2 < unitxt.StringGroups[i1].entries.Count; i2++)
                 {
                     // Instead of getting the addresses from the strings themselves
                     // Just use the dict, no duplicates :)
-                    baPr2.Write(stringAddresses[unitxt.StringGroups[i1].entries[i2]]);
+                    baPR2.Write(stringAddresses[unitxt.StringGroups[i1].entries[i2]]);
                 }
             }
-            int stringGroupOffset = baPr2.Position;
+            int stringGroupOffset = baPR2.Position;
             for (int i1 = 0; i1 < stringGroupCount; i1++)
             {
-                baPr2.Write(unitxt.StringGroups[i1].groupOffset);
+                baPR2.Write(unitxt.StringGroups[i1].groupOffset);
             }
-            int tableCountOffsetOffset = baPr2.Position;
-            baPr2.Write(tableCountOffset);
-            baPr2.Write(stringGroupOffset);
+            int tableCountOffsetOffset = baPR2.Position;
+            baPR2.Write(tableCountOffset);
+            baPR2.Write(stringGroupOffset);
 
-            baPr2.Resize(baPr2.Position);
+            baPR2.Resize(baPR2.Position);
 
             // Write Pr3 data
-            baPr3.Write(0x20);
-            baPr3.Endianess = Endianess.BigEndian;
-            baPr3.Write(pr3_pointers + 5);
-            baPr3.Write(1);
-            baPr3.Write(0);
-            baPr3.Write(tableCountOffsetOffset);
-            baPr3.Write(0);
-            baPr3.Write(0);
-            baPr3.Write(0);
+            baPR3.Write(0x20);
+            baPR3.Endianess = Endianess.BigEndian;
+            baPR3.Write(pr3_pointers + 5);
+            baPR3.Write(1);
+            baPR3.Write(0);
+            baPR3.Write(tableCountOffsetOffset);
+            baPR3.Write(0);
+            baPR3.Write(0);
+            baPR3.Write(0);
 
             // Just fill this stuff
-            baPr3.Write((short)(tablePointer / 4));
-            baPr3.Write((short)1);
-            baPr3.Write((short)2);
+            baPR3.Write((short)(tablePointer / 4));
+            baPR3.Write((short)1);
+            baPR3.Write((short)2);
             for (int i1 = 0; i1 < pr3_pointers; i1++)
             {
-                baPr3.Write((short)1);
+                baPR3.Write((short)1);
             }
-            baPr3.Write((short)1);
-            baPr3.Write((short)1);
+            baPR3.Write((short)1);
+            baPR3.Write((short)1);
 
             uint prc_key = (uint)(DateTime.UtcNow - new DateTime(1970, 1, 1)).TotalSeconds;
-            byte[] dataPR2 = PSOCT.CompressPRC(baPr2.Buffer, prc_key, true);
-            byte[] dataPR3 = PSOCT.CompressPRC(baPr3.Buffer, prc_key, true);
+            byte[] dataPR2 = PSOCT.CompressPRC(baPR2.Buffer, prc_key, true);
+            byte[] dataPR3 = PSOCT.CompressPRC(baPR3.Buffer, prc_key, true);
 
             File.WriteAllBytes(Path.ChangeExtension(filename, ".pr2"), dataPR2);
             File.WriteAllBytes(Path.ChangeExtension(filename, ".pr3"), dataPR3);
