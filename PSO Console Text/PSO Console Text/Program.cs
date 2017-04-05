@@ -22,7 +22,7 @@ namespace PSOCT
 #if DEBUG
             try
             {
-                UnitxtDC.BinToJson(@"..\..\..\Files\DC\text_n.pr2");
+                //UnitxtDC.BinToJson(@"..\..\..\Files\DC\text_n.pr2");
                 //UnitxtDC.JsonToBin(@"..\..\..\Files\DC\text_n.json");
                 
                 //UnitxtGC.BinToJson(@"..\..\..\Files\GC\text_o.pr2");
@@ -54,8 +54,7 @@ namespace PSOCT
 
                 if (string.Compare(args[0], "-dc", StringComparison.InvariantCultureIgnoreCase) == 0)
                 {
-                    Console.WriteLine("Cannot use DC mode right now");
-                    //system = 1;
+                    system = 1;
                 }
                 else if (string.Compare(args[0], "-gc", StringComparison.InvariantCultureIgnoreCase) == 0)
                 {
