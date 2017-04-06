@@ -24,7 +24,7 @@ namespace PSOCT
             {
                 //UnitxtDC.BinToJson(@"..\..\..\Files\DC\text_n.pr2");
                 //UnitxtDC.JsonToBin(@"..\..\..\Files\DC\text_n.json");
-                
+
                 //UnitxtGC.BinToJson(@"..\..\..\Files\GC\text_o.pr2");
                 //UnitxtGC.JsonToBin(@"..\..\..\Files\GC\text_n.json");
 
@@ -47,7 +47,7 @@ namespace PSOCT
             int mode = 0;
             string path = string.Empty;
 
-            if (args.Length == 2)
+            if (args.Length == 3)
             {
                 // Path is always last
                 path = args[args.Length - 1];
