@@ -18,7 +18,7 @@ If you find any string that you believe it does not belong to the "vanilla" file
 as I had to remove some content that is part of [Ultima](https://www.phantasystaronline.net/forum/).
 I think I didn't forget to remove anything but you never know.
 
-Credits:
+Credits:  
 English: Original file found in the game, I changed some strings  
 Spanish: [Soly](https://www.phantasystaronline.net/forum/index.php?/profile/14964-soly/)  
 Japanese: Probably the original, taken from [Ephinea](https://www.pioneer2.net/community/)  
