@@ -16,7 +16,7 @@ You can find a build of said tool [here](http://files.pioneer2.net/soly/Tools/Un
 
 If you find any string that you believe it does not belong to the "vanilla" files, please let me know
 as I had to remove some content that is part of [Ultima](https://www.phantasystaronline.net/forum/).
-I think I didn't forgot to remove anything but you never know.
+I think I didn't forget to remove anything but you never know.
 
 Credits:
 English: Original file found in the game, I changed some strings  
