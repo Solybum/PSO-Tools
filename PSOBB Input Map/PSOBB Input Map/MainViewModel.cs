@@ -55,6 +55,7 @@ namespace PSOBB_Input_Map
                         catch
                         {
                             MessageBox.Show("Could not access process memory", "Memory Sharp");
+                            this.ms = null;
                         }
                     }
                 }
@@ -77,6 +78,7 @@ namespace PSOBB_Input_Map
                         catch
                         {
                             MessageBox.Show("Could not access process memory", "Memory Sharp");
+                            this.ms = null;
                         }
                     }
                 }
@@ -113,6 +115,7 @@ namespace PSOBB_Input_Map
                         catch
                         {
                             MessageBox.Show("Could not access process memory", "Memory Sharp");
+                            this.ms = null;
                         }
                     }
                 }
@@ -128,8 +131,7 @@ namespace PSOBB_Input_Map
                             IntPtr address = this.ms.Read<IntPtr>(joyPointer, false);
                             if (address != IntPtr.Zero)
                             {
-                                byte joyValue = this.ms.Read<byte>(address + 4 + ((this.SelectedJoyAction - 4) * 4), false);
-                                this.SelectedJoy = this.joyButtonsValue.IndexOf(joyValue);
+                                int joyValue = this.ms.Read<int>(address + 4 + ((this.SelectedJoyAction - 4) * 4), false);
                                 SetValue(this.joyButtonsValue.IndexOf(joyValue), nameof(this.SelectedJoy));
                             }
                             else
@@ -140,6 +142,7 @@ namespace PSOBB_Input_Map
                         catch
                         {
                             MessageBox.Show("Could not access process memory", "Memory Sharp");
+                            this.ms = null;
                         }
                     }
                 }
@@ -172,6 +175,7 @@ namespace PSOBB_Input_Map
                             catch
                             {
                                 MessageBox.Show("Could not access process memory", "Memory Sharp");
+                                this.ms = null;
                             }
                         }
                     }
@@ -184,7 +188,7 @@ namespace PSOBB_Input_Map
                                 IntPtr address = this.ms.Read<IntPtr>(joyPointer, false);
                                 if (address != IntPtr.Zero)
                                 {
-                                    this.ms.Write(address + 4 + ((this.SelectedJoyAction - 4) * 4), this.joyAxisValue[this.SelectedJoy], false);
+                                    this.ms.Write(address + 4 + ((this.SelectedJoyAction - 4) * 4), this.joyButtonsValue[this.SelectedJoy], false);
                                 }
                                 else
                                 {
@@ -194,6 +198,7 @@ namespace PSOBB_Input_Map
                             catch
                             {
                                 MessageBox.Show("Could not access process memory", "Memory Sharp");
+                                this.ms = null;
                             }
                         }
                     }
@@ -226,10 +231,15 @@ namespace PSOBB_Input_Map
         {
             try
             {
-                this.ms = new MemorySharp(Process.GetProcessesByName(processname).First());
+                if (this.ms == null)
+                {
+                    this.ms = new MemorySharp(Process.GetProcessesByName(processname).First());
+                }
+                return true;
             }
             catch
             {
+                this.ms = null;
                 MessageBox.Show("Could not find process", "PSOBB Input Map");
             }
             return false;
