@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using Libraries.ByteArray;
+using Soly.ByteArray;
 using PSOCT.Unitxt;
 
 namespace PSOCT
