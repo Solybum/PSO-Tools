@@ -167,7 +167,7 @@ namespace PSOCT
                 baPR2.Position = baPR2.ReadI32(unitxtTablePointer + i1 * 4);
 
                 unitxt.SomeTables.Add(new List<short>());
-                for (int i2 = 0; i2 < 0xE0; i2++)
+                for (int i2 = 0; i2 < 0x70; i2++)
                 {
                     short value = baPR2.ReadI16();
                     unitxt.SomeTables[i1].Add(value);
