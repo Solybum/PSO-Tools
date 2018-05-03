@@ -6,7 +6,7 @@ Collection of tools, libraries and files related to PSO.
 PSO Console "unitxt" editor
 
 ## Libraries
-[PRS](https://github.com/Solybum/PSO-Tools/tree/master/PRS)  
+[PRS](https://github.com/Solybum/PRS)  
 PRS compression library used in Sega games.  
 
 ## Files
