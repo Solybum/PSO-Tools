@@ -8,8 +8,6 @@ namespace PSOCT
 {
     public abstract class UnitxtGC
     {
-        public static int stringGroupCount = 44;
-
         public static void JsonToBin(string filename)
         {
             byte[] data = File.ReadAllBytes(filename);
@@ -18,7 +16,7 @@ namespace PSOCT
 
             int pr3_pointers = 0;
             // Add all the strings as well as the group pointer
-            for (int i1 = 0; i1 < stringGroupCount; i1++)
+            for (int i1 = 0; i1 < unitxt.StringGroups.Count; i1++)
             {
                 pr3_pointers += 1;
                 pr3_pointers += unitxt.StringGroups[i1].entries.Count;
@@ -28,7 +26,7 @@ namespace PSOCT
             ByteArray baPR2 = new ByteArray(1024 * 1024);
             ByteArray baPR3 = new ByteArray((pr3_pointers + 5) * 2 + 32);
 
-            for (int i1 = 0; i1 < stringGroupCount; i1++)
+            for (int i1 = 0; i1 < unitxt.StringGroups.Count; i1++)
             {
                 for (int i2 = 0; i2 < unitxt.StringGroups[i1].entries.Count; i2++)
                 {
@@ -74,7 +72,7 @@ namespace PSOCT
             baPR2.Endianess = Endianess.BigEndian;
             baPR2.Write(tablePointer);
 
-            for (int i1 = 0; i1 < stringGroupCount; i1++)
+            for (int i1 = 0; i1 < unitxt.StringGroups.Count; i1++)
             {
                 unitxt.StringGroups[i1].groupOffset = baPR2.Position;
                 for (int i2 = 0; i2 < unitxt.StringGroups[i1].entries.Count; i2++)
@@ -85,7 +83,7 @@ namespace PSOCT
                 }
             }
             int stringGroupOffset = baPR2.Position;
-            for (int i1 = 0; i1 < stringGroupCount; i1++)
+            for (int i1 = 0; i1 < unitxt.StringGroups.Count; i1++)
             {
                 baPR2.Write(unitxt.StringGroups[i1].groupOffset);
             }
@@ -118,6 +116,7 @@ namespace PSOCT
             baPR3.Write((short)1);
 
             uint prc_key = (uint)(DateTime.UtcNow - new DateTime(1970, 1, 1)).TotalSeconds;
+
             byte[] dataPR2 = PSOCT.CompressPRC(baPR2.Buffer, prc_key, true);
             byte[] dataPR3 = PSOCT.CompressPRC(baPR3.Buffer, prc_key, true);
 
@@ -158,6 +157,7 @@ namespace PSOCT
             baPR2.Position = shortPointerTable[shortPointerTable.Count - 2];
             int unitxtTablesPointer = baPR2.ReadI32();
             int unitxtStringGroupsPointer = baPR2.ReadI32();
+            int unitxtStringGroupsCount = (shortPointerTable[shortPointerTable.Count - 2] - unitxtStringGroupsPointer) / 4;
 
             // Judging by other REL files this is the count, but the data says 023C0000... 
             // Could be an error in the data? We'll find out
@@ -177,16 +177,16 @@ namespace PSOCT
                 }
             }
 
-            for (int i1 = 0; i1 < stringGroupCount; i1++)
+            for (int i1 = 0; i1 < unitxtStringGroupsCount; i1++)
             {
                 unitxt.StringGroups.Add(new UnitxtGroup() { name = string.Format("Group {0:D2}", i1) });
 
-                int groupPointer = shortPointerTable[shortPointerTable.Count - (stringGroupCount + 2) + i1];
+                int groupPointer = shortPointerTable[shortPointerTable.Count - (unitxtStringGroupsCount + 2) + i1];
                 int groupAddress = baPR2.ReadI32(groupPointer);
 
-                int nextGroupPointer = shortPointerTable[shortPointerTable.Count - (stringGroupCount + 2) + (i1 + 1)];
+                int nextGroupPointer = shortPointerTable[shortPointerTable.Count - (unitxtStringGroupsCount + 2) + (i1 + 1)];
                 int nextGroupAddress = baPR2.ReadI32(nextGroupPointer);
-                if (i1 >= (stringGroupCount - 1))
+                if (i1 >= (unitxtStringGroupsCount - 1))
                 {
                     nextGroupPointer = shortPointerTable[shortPointerTable.Count - 1];
                     nextGroupAddress = baPR2.ReadI32(nextGroupPointer);

@@ -28,8 +28,8 @@ namespace PSOCT
                 //UnitxtGC.BinToJson(@"..\..\..\Files\GC\text_o.pr2");
                 //UnitxtGC.JsonToBin(@"..\..\..\Files\GC\text_n.json");
 
-                UnitxtGC.BinToJson(@"..\..\..\Files\GC_plus\plus_o.pr2");
-                UnitxtGC.JsonToBin(@"..\..\..\Files\GC_plus\plus_n.json");
+                //UnitxtGC.BinToJson(@"..\..\..\Files\GC_plus\plus_o.pr2");
+                //UnitxtGC.JsonToBin(@"..\..\..\Files\GC_plus\plus_n.json");
 
                 //UnitxtXB.BinToJson(@"..\..\..\Files\XB\text_o.pr2");
                 //UnitxtXB.JsonToBin(@"..\..\..\Files\XB\text_n.json");

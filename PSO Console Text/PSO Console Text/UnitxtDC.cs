@@ -8,7 +8,7 @@ namespace PSOCT
 {
     public abstract class UnitxtDC
     {
-        public static int stringGroupCount = 37;
+        public static int unitxtStringGroupCount = 37;
 
         public static void JsonToBin(string filename)
         {
@@ -18,7 +18,7 @@ namespace PSOCT
             
             int pr3_pointersCount = 0;
             // Add all the strings as well as the group pointer
-            for (int i1 = 0; i1 < stringGroupCount - 2; i1++)
+            for (int i1 = 0; i1 < unitxtStringGroupCount - 2; i1++)
             {
                 pr3_pointersCount += 1;
                 pr3_pointersCount += unitxt.StringGroups[i1].entries.Count;
@@ -29,7 +29,7 @@ namespace PSOCT
             ByteArray baPR2 = new ByteArray(1024 * 1024);
             ByteArray baPR3 = new ByteArray(pr3_pointersCount * 2 + 32);
             
-            for (int i1 = 0; i1 < stringGroupCount - 2; i1++)
+            for (int i1 = 0; i1 < unitxtStringGroupCount - 2; i1++)
             {
                 for (int i2 = 0; i2 < unitxt.StringGroups[i1].entries.Count; i2++)
                 {
@@ -92,7 +92,7 @@ namespace PSOCT
 
             // The rest
             int shipSelectPointer = 0;
-            for (int i1 = 10; i1 < stringGroupCount - 2; i1++)
+            for (int i1 = 10; i1 < unitxtStringGroupCount - 2; i1++)
             {
                 unitxt.StringGroups[i1].groupOffset = baPR2.Position;
                 for (int i2 = 0; i2 < unitxt.StringGroups[i1].entries.Count; i2++)
@@ -106,7 +106,7 @@ namespace PSOCT
             }
             
             int groupsOffset = baPR2.Position;
-            for (int i1 = 0; i1 < stringGroupCount - 2; i1++)
+            for (int i1 = 0; i1 < unitxtStringGroupCount - 2; i1++)
             {
                 if (i1 == 12)
                 {
@@ -142,7 +142,7 @@ namespace PSOCT
             baPR3.Write((short)1);
             baPR3.Write((short)1);
 
-            for (int i1 = 10; i1 < stringGroupCount - 2; i1++)
+            for (int i1 = 10; i1 < unitxtStringGroupCount - 2; i1++)
             {
                 for (int i2 = 0; i2 < unitxt.StringGroups[i1].entries.Count; i2++)
                 {
@@ -153,7 +153,7 @@ namespace PSOCT
             // Write this at the end because I am too lazy to do it properly
             baPR3.Write((short)(firstPointer / 4), 0x20);
 
-            for (int i1 = 10; i1 < stringGroupCount; i1++)
+            for (int i1 = 10; i1 < unitxtStringGroupCount; i1++)
             {
                 baPR3.Write((short)1);
             }
@@ -195,7 +195,7 @@ namespace PSOCT
                 shortPointerTable.Add(chain);
             }
 
-            int unitxtTablesPointer = shortPointerTable[shortPointerTable.Count - stringGroupCount + 12];
+            int unitxtTablesPointer = shortPointerTable[shortPointerTable.Count - unitxtStringGroupCount + 12];
             baPR2.Position = baPR2.ReadI32(unitxtTablesPointer);
             unitxt.tableValue = baPR2.ReadI32();
 
@@ -229,7 +229,7 @@ namespace PSOCT
             }
 
             int stringGroupsCurrentIndex = 0;
-            for (int i1 = 0; i1 < stringGroupCount - 1; i1++)
+            for (int i1 = 0; i1 < unitxtStringGroupCount - 1; i1++)
             {
                 if (i1 == 12)
                 {
@@ -238,16 +238,16 @@ namespace PSOCT
 
                 unitxt.StringGroups.Add(new UnitxtGroup() { name = string.Format("Group {0:D2}", stringGroupsCurrentIndex) });
 
-                int groupPointer = shortPointerTable[shortPointerTable.Count - stringGroupCount + i1];
+                int groupPointer = shortPointerTable[shortPointerTable.Count - unitxtStringGroupCount + i1];
                 int groupAddress = baPR2.ReadI32(groupPointer);
 
-                int nextGroupPointer = shortPointerTable[shortPointerTable.Count - stringGroupCount + i1];
+                int nextGroupPointer = shortPointerTable[shortPointerTable.Count - unitxtStringGroupCount + i1];
                 int nextGroupAddress = baPR2.ReadI32(nextGroupPointer);
 
                 // This one goes into the table itself so gotta do some magic
                 if (i1 == 9)
                 {
-                    nextGroupPointer = shortPointerTable[shortPointerTable.Count - stringGroupCount + 12];
+                    nextGroupPointer = shortPointerTable[shortPointerTable.Count - unitxtStringGroupCount + 12];
                     nextGroupAddress = baPR2.ReadI32(unitxtTablesPointer);
                     nextGroupAddress += 8;
                     nextGroupAddress = baPR2.ReadI32(nextGroupAddress);
@@ -255,17 +255,17 @@ namespace PSOCT
                 }
                 else if (i1 == 11)
                 {
-                    nextGroupPointer = shortPointerTable[shortPointerTable.Count - stringGroupCount + i1 + 2];
+                    nextGroupPointer = shortPointerTable[shortPointerTable.Count - unitxtStringGroupCount + i1 + 2];
                     nextGroupAddress = baPR2.ReadI32(nextGroupPointer);
                 }
-                else if (i1 == (stringGroupCount - 2))
+                else if (i1 == (unitxtStringGroupCount - 2))
                 {
-                    nextGroupPointer = shortPointerTable[shortPointerTable.Count - stringGroupCount];
-                    nextGroupAddress = shortPointerTable[shortPointerTable.Count - stringGroupCount];
+                    nextGroupPointer = shortPointerTable[shortPointerTable.Count - unitxtStringGroupCount];
+                    nextGroupAddress = shortPointerTable[shortPointerTable.Count - unitxtStringGroupCount];
                 }
                 else
                 {
-                    nextGroupPointer = shortPointerTable[shortPointerTable.Count - stringGroupCount + i1 + 1];
+                    nextGroupPointer = shortPointerTable[shortPointerTable.Count - unitxtStringGroupCount + i1 + 1];
                     nextGroupAddress = baPR2.ReadI32(nextGroupPointer);
                 }
                 
