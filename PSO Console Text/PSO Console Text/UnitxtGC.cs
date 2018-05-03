@@ -138,11 +138,10 @@ namespace PSOCT
             dataPR2 = PSOCT.DecompressPRC(dataPR2, true);
             dataPR3 = PSOCT.DecompressPRC(dataPR3, true);
 
-            ByteArray baPR2 = new ByteArray(dataPR2);
-            ByteArray baPR3 = new ByteArray(dataPR3);
+            ByteArray baPR2 = new ByteArray(dataPR2, Endianess.BigEndian);
+            ByteArray baPR3 = new ByteArray(dataPR3, Endianess.BigEndian);
 
-            int shortPointerTableOffset = baPR3.ReadI32();
-            baPR3.Endianess = Endianess.BigEndian;
+            int shortPointerTableOffset = baPR3.ReadI32(Endianess.LittleEndian);
             int shortPointerTableCount = baPR3.ReadI32();
             baPR3.Position = shortPointerTableOffset;
 
@@ -157,16 +156,13 @@ namespace PSOCT
             // Read starting pointers for the PR2 data
             // Last 2 pointers are the ones we need
             baPR2.Position = shortPointerTable[shortPointerTable.Count - 2];
-            baPR2.Endianess = Endianess.BigEndian;
             int unitxtTablesPointer = baPR2.ReadI32();
             int unitxtStringGroupsPointer = baPR2.ReadI32();
 
             // Judging by other REL files this is the count, but the data says 023C0000... 
             // Could be an error in the data? We'll find out
             baPR2.Position = unitxtTablesPointer;
-            baPR2.Endianess = Endianess.LittleEndian;
-            unitxt.tableValue = baPR2.ReadI32();
-            baPR2.Endianess = Endianess.BigEndian;
+            unitxt.tableValue = baPR2.ReadI32(Endianess.LittleEndian);
             int unitxtTablePointer = baPR2.ReadI32();
 
             for (int i1 = 0; i1 < 2; i1++)
